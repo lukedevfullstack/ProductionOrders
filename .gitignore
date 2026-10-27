@@ -42,7 +42,7 @@ Thumbs.db
 *.swp
 *.swo
 
-# Pastas de compilaÃ§Ã£o e ficheiros do Visual Studio
+# Pastas de compilação e ficheiros do Visual Studio
 .vs/
 bin/
 obj/

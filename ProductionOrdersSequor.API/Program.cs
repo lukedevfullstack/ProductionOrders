@@ -4,6 +4,7 @@ using ProductionOrdersSequor.Infrastructure.Repositories;
 using ProductionOrdersSequor.Infrastructure;
 using ProductionOrdersSequor.Application.Interfaces;
 using ProductionOrdersSequor.Application.Services;
+using ProductionOrdersSequor.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

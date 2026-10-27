@@ -9,7 +9,7 @@ public class OrderMap : IEntityTypeConfiguration<Order>
     {
         builder.ToTable("Order");
         builder.HasKey(o => o.OrderCode);
-        builder.Property(o => o.OrderCode).HasColumnName("Order").HasColumnType("VARCHAR(50)");
+        builder.Property(o => o.OrderCode).HasColumnName("OrderCode").HasColumnType("VARCHAR(50)");
         builder.Property(o => o.Quantity).HasColumnType("DECIMAL(18,2)");
         builder.Property(o => o.ProductCode).HasColumnType("VARCHAR(50)");
 

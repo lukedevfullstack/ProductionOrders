@@ -66,7 +66,7 @@ public class OrderServiceTests
         product.ProductMaterials.Add(new ProductMaterial("prod1", "aaa"));
 
         // Passar o produto associado à ordem aqui:
-        var order = new Order("111", 100.0m, "prod1", product);
+        var order = new Order("111", 100.0m, "prod1"); ;
 
         _orderRepositoryMock.Setup(r => r.GetUserByEmailAsync(dto.Email))
             .ReturnsAsync(user);

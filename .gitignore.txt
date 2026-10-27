@@ -1,0 +1,50 @@
+# Visual Studio / .NET
+/[Bb]in/
+/[Oo]bj/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.pidb
+*.svclog
+ipch/
+
+# Test Results
+[Tt]est[Rr]esults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Node.js / React (se a pasta do front-end estiver na raiz ou numa subpasta)
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Operating System / Editor
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+*.swp
+*.swo
+
+# Pastas de compilação e ficheiros do Visual Studio
+.vs/
+bin/
+obj/
+**/bin/
+**/obj/

@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36401.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSequor.Domain", "ProductionOrdersSequor.Domain\ProductionOrdersSequor.Domain.csproj", "{5D1B0E34-B995-4AE9-B939-B206F24DDB72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSequor.Application", "ProductionOrdersSequor.Application\ProductionOrdersSequor.Application.csproj", "{20F117BF-EC40-4F3E-9F16-316A249BCCAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSequor.Infrastructure", "ProductionOrdersSequor.Infrastructure\ProductionOrdersSequor.Infrastructure.csproj", "{DDF0B990-8DED-47E5-B00B-B6359392B203}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C896A569-45DB-41C6-9818-360D1D457388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSequor.API", "ProductionOrdersSequor.API\ProductionOrdersSequor.API.csproj", "{EB71CCD8-5D0D-40D5-918E-303665F5A0B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSequor.Application.Tests", "ProductionOrdersSequor.Application.Tests\ProductionOrdersSequor.Application.Tests.csproj", "{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D1B0E34-B995-4AE9-B939-B206F24DDB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D1B0E34-B995-4AE9-B939-B206F24DDB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D1B0E34-B995-4AE9-B939-B206F24DDB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D1B0E34-B995-4AE9-B939-B206F24DDB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F117BF-EC40-4F3E-9F16-316A249BCCAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F117BF-EC40-4F3E-9F16-316A249BCCAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F117BF-EC40-4F3E-9F16-316A249BCCAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F117BF-EC40-4F3E-9F16-316A249BCCAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF0B990-8DED-47E5-B00B-B6359392B203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF0B990-8DED-47E5-B00B-B6359392B203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF0B990-8DED-47E5-B00B-B6359392B203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF0B990-8DED-47E5-B00B-B6359392B203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB71CCD8-5D0D-40D5-918E-303665F5A0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB71CCD8-5D0D-40D5-918E-303665F5A0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB71CCD8-5D0D-40D5-918E-303665F5A0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB71CCD8-5D0D-40D5-918E-303665F5A0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D1B0E34-B995-4AE9-B939-B206F24DDB72} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{20F117BF-EC40-4F3E-9F16-316A249BCCAD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DDF0B990-8DED-47E5-B00B-B6359392B203} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{EB71CCD8-5D0D-40D5-918E-303665F5A0B1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A7574983-BFD2-4C2C-B8B7-AF84CD8602A1} = {C896A569-45DB-41C6-9818-360D1D457388}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {180D9606-8C6F-4BFA-BB5D-8420F9FF1773}
+	EndGlobalSection
+EndGlobal

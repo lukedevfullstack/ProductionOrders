@@ -2,6 +2,7 @@ import React from 'react';
 import { useProduction } from '../../hooks/useProduction';
 import { ProductionForm } from '../../components/ProductionForm';
 import { ProductionHistory } from '../../components/ProductionHistory';
+import { NotificationModal } from '../../components/NotificationModal';
 
 export default function ProductionPage() {
   const {
@@ -17,6 +18,8 @@ export default function ProductionPage() {
     requiredCycleTime,
     isCycleTimeValid,
     isFormValid,
+    modalState,
+    closeModal,
     handleOrderChange,
     submitProduction
   } = useProduction();
@@ -59,6 +62,7 @@ export default function ProductionPage() {
           <ProductionForm 
             productionOrders={productionOrders}
             selectedOrderCode={selectedOrderCode}
+            handleOrderCommand={handleOrderChange}
             handleOrderChange={handleOrderChange}
             selectedOrderObj={selectedOrderObj}
             requiredCycleTime={requiredCycleTime}
@@ -78,6 +82,14 @@ export default function ProductionPage() {
             operatorEmail={operatorEmail}
           />
         )}
+
+        {/* Modal Customizado */}
+        <NotificationModal 
+          isOpen={modalState.isOpen}
+          type={modalState.type}
+          message={modalState.message}
+          onClose={closeModal}
+        />
 
       </div>
     </div>

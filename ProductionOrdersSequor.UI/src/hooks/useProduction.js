@@ -12,6 +12,9 @@ export function useProduction() {
     const [selectedMaterial, setSelectedMaterial] = useState('');
     const [history, setHistory] = useState([]);
 
+    // Estados do Modal customizado
+    const [modalState, setModalState] = useState({ isOpen: false, type: 'success', message: '' });
+
     const [elapsedTime, setElapsedTime] = useState(0);
     const timerRef = useRef(null);
 
@@ -39,13 +42,13 @@ export function useProduction() {
         };
     }, [selectedOrderObj]);
 
-    const fetchOrders = async() => {
+    const fetchOrders = async () => {
         try {
             const response = await api.get('/orders/GetOrders');
             const responseData = response.data;
-            const list = Array.isArray(responseData) ?
-                responseData :
-                (responseData.orders || responseData.$values || []);
+            const list = Array.isArray(responseData)
+                ? responseData
+                : (responseData.orders || responseData.$values || []);
             setProductionOrders(list);
         } catch (error) {
             console.error("Erro ao buscar ordens:", error);
@@ -53,7 +56,7 @@ export function useProduction() {
         }
     };
 
-    const fetchHistory = async() => {
+    const fetchHistory = async () => {
         if (!operatorEmail.trim()) {
             setHistory([]);
             return;
@@ -62,9 +65,9 @@ export function useProduction() {
         try {
             const response = await api.get(`/orders/GetProduction?email=${encodeURIComponent(operatorEmail.trim())}`);
             const responseData = response.data;
-            const list = Array.isArray(responseData) ?
-                responseData :
-                (responseData.productions || responseData.data || responseData.$values || []);
+            const list = Array.isArray(responseData)
+                ? responseData
+                : (responseData.productions || responseData.data || responseData.$values || []);
             setHistory(list);
         } catch (error) {
             console.error("Erro ao buscar histórico:", error);
@@ -84,7 +87,7 @@ export function useProduction() {
     const isCycleTimeValid = elapsedTime >= requiredCycleTime;
     const isFormValid = operatorEmail.trim() !== '' && selectedOrderObj !== null && isCycleTimeValid && quantity > 0 && selectedMaterial !== '';
 
-    const submitProduction = async(e) => {
+    const submitProduction = async (e) => {
         e.preventDefault();
         if (!isFormValid) return;
 
@@ -103,15 +106,26 @@ export function useProduction() {
         };
 
         try {
-            await api.post('/orders/SetProduction', payload);
-            const data = response.data;
+            const res = await api.post('/orders/SetProduction', payload);
+            const data = res.data;
 
-            if (data && (data.type === 'E' || data.status >= 400 || data.hasError)) {
-                alert(`Erro no apontamento: ${data.message || data.description || 'Falha na validação do back-end'}`);
+            const resType = data?.type || data?.Type;
+            const resMessage = data?.message || data?.Message || data?.description || data?.Description;
+
+            if (data && (resType === 'E' || resType === 'Error' || data.status >= 400 || data.hasError || data.HasError)) {
+                setModalState({
+                    isOpen: true,
+                    type: 'error',
+                    message: resMessage || 'Falha na validação do back-end'
+                });
                 return;
             }
 
-            alert('Apontamento enviado com sucesso!');
+            setModalState({
+                isOpen: true,
+                type: 'success',
+                message: 'Apontamento enviado com sucesso!'
+            });
 
             setSelectedOrderCode('');
             setSelectedOrderObj(null);
@@ -121,29 +135,36 @@ export function useProduction() {
 
             fetchHistory();
             setActiveTab('history');
-        } catch (error) {
-            const errorMsg = err.response?.data?.message || err.response?.data?.description || err.message || 'Erro ao enviar o apontamento.';
-            alert(`Erro: ${errorMsg}`);
+        } catch (err) {
+            console.error("Erro ao enviar apontamento:", err);
+            const errorMsg = err.response?.data?.message || err.response?.data?.Message || err.response?.data?.description || err.response?.data?.Description || err.message || 'Erro ao enviar o apontamento.';
+            setModalState({
+                isOpen: true,
+                type: 'error',
+                message: errorMsg
+            });
         }
     };
 
+    const closeModal = () => {
+        setModalState(prev => ({ ...prev, isOpen: false }));
+    };
+
     return {
-        operatorEmail,
-        setOperatorEmail,
-        activeTab,
-        setActiveTab,
+        operatorEmail, setOperatorEmail,
+        activeTab, setActiveTab,
         productionOrders,
         selectedOrderObj,
         selectedOrderCode,
-        quantity,
-        setQuantity,
-        selectedMaterial,
-        setSelectedMaterial,
+        quantity, setQuantity,
+        selectedMaterial, setSelectedMaterial,
         history,
         elapsedTime,
         requiredCycleTime,
         isCycleTimeValid,
         isFormValid,
+        modalState,
+        closeModal,
         handleOrderChange,
         submitProduction
     };

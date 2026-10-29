@@ -31,7 +31,7 @@ export function ProductionHistory({ history, operatorEmail }) {
                 <tr key={index}>
                   <td>{item.order || item.orderId}</td>
                   <td>{item.quantity}</td>
-                  <td>{item.materialDescription || item.materialCode || item.material}</td>
+                  <td>{item.materialDescription}</td>
                   <td>{item.date || item.createdAt || `${item.productionDate || ''} ${item.productionTime || ''}`}</td>
                   <td>{item.email || operatorEmail}</td>
                 </tr>

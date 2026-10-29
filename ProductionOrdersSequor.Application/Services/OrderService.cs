@@ -47,17 +47,27 @@ public class OrderService : IOrderService
 
         var productions = await _orderRepository.GetProductionsByEmailAsync(email);
 
-        return new
-        {
-            productions = productions.Select(p => new
+        var orders = await _orderRepository.GetAllOrdersWithDetailsAsync();
+
+        var result = productions.Select(p => {
+            var matchingMaterial = orders
+                .Where(o => o.OrderCode == p.Order)
+                .SelectMany(o => o.Product?.ProductMaterials ?? new List<ProductMaterial>())
+                .FirstOrDefault(pm => pm.MaterialCode == p.MaterialCode);
+
+            return new
             {
                 order = p.Order,
+                email = p.Email,
                 date = p.Date.ToString("M/d/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
                 quantity = p.Quantity,
                 materialCode = p.MaterialCode,
+                materialDescription = matchingMaterial?.Material?.MaterialDescription ?? p.MaterialCode, // Retorna a descrição ou o código como fallback
                 cycleTime = p.CycleTime
-            })
-        };
+            };
+        });
+
+        return new { productions = result };
     }
 
     public async Task<ProductionResponseDto> SetProductionAsync(SetProductionDto dto)

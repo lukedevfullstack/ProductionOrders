@@ -15,7 +15,21 @@ namespace ProductionOrdersSequor.Desktop
         public string DateRaw { get; set; } = string.Empty;
 
         public string ProductionDate => !string.IsNullOrEmpty(DateRaw) && DateRaw.Contains(' ') ? DateRaw.Split(' ')[0] : DateRaw;
-        public string ProductionTime => !string.IsNullOrEmpty(DateRaw) && DateRaw.Contains(' ') ? DateRaw.Split(' ')[1] : string.Empty;
+
+        public string ProductionTime
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(DateRaw)) return string.Empty;
+                var parts = DateRaw.Split(' ');
+
+                if (parts.Length >= 3)
+                {
+                    return $"{parts[1]} {parts[2]}";
+                }
+                return parts.Length > 1 ? parts[1] : string.Empty;
+            }
+        }
 
         [JsonPropertyName("quantity")]
         public decimal Quantity { get; set; }
